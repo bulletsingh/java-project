@@ -1,5 +1,10 @@
 pipeline{
-     stages{
+     agent{
+
+	Linux
+}
+
+	stages{
 	
 	stage('Unit Tests'){
 	steps{
