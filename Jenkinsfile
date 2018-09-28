@@ -1,8 +1,5 @@
 pipeline{
-   agent{
-	label 'master'
-}
-   stages{
+     stages{
 	
 	stage('Unit Tests'){
 	steps{
