@@ -1,7 +1,7 @@
 pipeline{
      agent{
 
-	Linux
+	label Linux
 }
 
 	stages{
