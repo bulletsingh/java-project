@@ -1,31 +1,29 @@
 pipeline{
      agent{
-
 	label 'Linux'
-}
+	}
 
-	stages{
-	
+     stages{
 	stage('Unit Tests'){
-	steps{
-		sh 'ant -f test.xml -v'
-		junit 'reports/result.xml'
-	}
-	}
+		steps{
+			sh 'ant -f test.xml -v'
+			junit 'reports/result.xml'
+			}
+		}
 	stage('build'){
-	steps{
-	sh 'ant -f build.xml'
+		steps{
+			sh 'ant -f build.xml'
 			}
 		}
 	stage('deploy'){
-	steps{
-	sh "cp 'dist/rectangle_${env.BUILD_NUMBER}.jar' /var/www/html/rectangles/all/"
+		steps{
+			sh "cp 'dist/rectangle_${env.BUILD_NUMBER}.jar' /var/www/html/rectangles/all/"
+			}
+	   }		
+}
+	post{
+		always{
+		archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
 		}
-}			}
-   post {
-	always {
-	archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
-	
-	}
 }
-}
+
